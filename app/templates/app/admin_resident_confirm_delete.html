@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Resident</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Delete Resident</h1>
+        <a href="{% url 'admin_dashboard' %}">Back to Dashboard</a>
+    </header>
+    <main>
+        <p>Are you sure you want to delete the resident: <strong>{{ resident.first_name }} {{ resident.last_name }}</strong>?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'resident_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Your Company</p>
+    </footer>
+</body>
+</html>

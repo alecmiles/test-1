@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Resident</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Add Resident</h1>
+        <a href="{% url 'resident_list' %}" class="back-link">Back to Residents List</a>
+    </header>
+
+    <main>
+        <h2>New Resident Information</h2>
+
+        <!-- Form for Adding a New Resident -->
+        <form method="post" class="form-container">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Display form fields -->
+            <button type="submit" class="btn-primary">Add Resident</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Company</p>
+    </footer>
+</body>
+</html>

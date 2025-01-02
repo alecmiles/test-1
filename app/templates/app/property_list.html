@@ -1,0 +1,21 @@
+
+{% extends 'app/admin_dashboard.html' %}
+
+{% block title %}Properties - Residency System{% endblock %}
+
+{% block content %}
+
+    <h1>Properties List</h1>
+    <ul>
+        {% for property in properties %}
+            <li>
+                <strong>{{ property.address }}</strong><br>
+                Lot Size: {{ property.lot_size }} sq. ft.<br>
+                Available: {% if property.is_available %}Yes{% else %}No{% endif %}<br>
+                Description: {{ property.description|default:"No description available." }}
+            </li>
+        {% empty %}
+            <p>No properties found.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'app/admin_dashboard.html' %}
+
+{% block title %}Residents - Residency System{% endblock %}
+
+{% block content %}
+<h2>Manage Residents</h2>
+
+<!-- Add Resident Button -->
+<div class="action-links">
+    <a href="{% url 'add_resident' %}" class="btn-primary">Add New Resident</a>
+</div>
+
+<h3>Residents List</h3>
+
+<!-- Search Form -->
+<form method="get" action="{% url 'resident_list' %}" class="search-form">
+    <input type="text" name="search" placeholder="Search by name or email" value="{{ request.GET.search }}">
+    <button type="submit" class="btn-primary">Search</button>
+</form>
+
+<!-- Residents Table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for resident in residents %}
+        <tr>
+            <td>{{ resident.first_name }}</td>
+            <td>{{ resident.last_name }}</td>
+            <td>{{ resident.email }}</td>
+            <td>{{ resident.phone_number }}</td>
+            <td>{{ resident.address }}</td>
+            <td>
+                <!-- Edit Resident Button -->
+                <a href="{% url 'edit_resident' resident.pk %}" class="btn-secondary">Edit</a>
+
+                <!-- Delete Resident Form (in-line) -->
+                <form method="post" action="{% url 'delete_resident' resident.pk %}" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this resident?');">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

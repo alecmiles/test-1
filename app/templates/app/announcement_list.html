@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Announcements - Residency System{% endblock %}
+
+{% block content %}
+    <h1>Announcements</h1>
+    <ul>
+        {% for announcement in announcements %}
+            <li>
+                <strong>{{ announcement.title }}</strong><br>
+                Published: {{ announcement.published_date }}<br>
+                Content: {{ announcement.content }}
+            </li>
+        {% empty %}
+            <p>No announcements found.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,7 +1,10 @@
  {% extends 'app/base.html' %}
- {% load static %}
- {% block content %}
-      <h1>Hello World</h1>
- <img class="mylogo" src="{% static 'images/logo.png' %}">
- {% endblock content %}
+
+{% block title %}Home - Residency System{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Residency System</h1>
+    <p>This system helps manage residents, properties, events, payments, and announcements.</p>
+{% endblock %}
+
 
